@@ -22,7 +22,6 @@ struct AuthView: View {
             TextFieldView(subtitle: "password", typeTextField: .simple, text: $password)
             // Update auth data button
             Button {
-                
                 // E-mail
                 viewModel.updateEmail(with: email) { error in
                     switch error {
@@ -48,9 +47,6 @@ struct AuthView: View {
                     }
                 }
                 
-                if !errorOccured {
-                    presentationMode.wrappedValue.dismiss()
-                }
                 
             } label: {
                 Text("Set Data")
@@ -78,6 +74,10 @@ struct AuthView: View {
                 Button("Ok", role: .cancel){
                     self.errorOccured = false
                 }
+            }
+        }.onChange(of: viewModel.isAnonymous) { newValue in
+            if !viewModel.isAnonymous {
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }

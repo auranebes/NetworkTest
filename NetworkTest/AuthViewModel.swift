@@ -22,6 +22,21 @@ class AuthViewModel: ObservableObject {
         anonymousCheck()
     }
     
+    func login(withEmail email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("DEBUG: error login: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = result?.user else { return }
+            self.userSession = user
+            self.fetchUser()
+            
+        }
+        print("login")
+    }
+    
     // Регистрация анонимно
     
     func registerAnon() {
