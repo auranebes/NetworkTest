@@ -8,13 +8,15 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseDatabase
 
-struct User: Identifiable, Decodable {
+struct User: Identifiable, Codable {
     @DocumentID var id: String?
-    var image_url: String
-    var user_name: String
+    var image_url: String?
+    var user_name: String?
     
     enum CodingKeys: String, CodingKey {
         case image_url
         case user_name
     }
 }
+
+
