@@ -11,6 +11,8 @@ final class UserManager: ObservableObject {
     
     @Published var user = User()
     
+    
+    
     init() {}
     
     init(user: User) {

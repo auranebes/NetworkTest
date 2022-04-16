@@ -26,7 +26,7 @@ struct ContentView: View {
             List {
                 ForEach(users){user in
                     HStack(alignment: .top, spacing: 15){
-                        AsyncImage(url: URL(string: user.image_url)){phase in
+                        AsyncImage(url: URL(string: user.image_url ?? "")){phase in
                             if let image = phase.image{
                                 image
                                     .resizable()
@@ -41,7 +41,7 @@ struct ContentView: View {
                             }
                         }
                         VStack(alignment: .leading, spacing: 6){
-                            Text(user.user_name)
+                            Text(user.user_name ?? "")
                                 .font(.title2.bold())
                             Text("some human")
                         }
@@ -80,11 +80,20 @@ struct ContentView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink {
-                        AuthView()
-                    } label: {
-                        Text("Register User")
+                    HStack{
+                        NavigationLink {
+                            AuthView()
+                        } label: {
+                            Text("Register User")
+                        }
+                        
+                        NavigationLink {
+                            SupportMailView()
+                        } label: {
+                            Text("Написать в поддержку")
+                        }
                     }
+
                 }
             }
         }
@@ -115,93 +124,3 @@ enum AuthError: String, Error {
     case failedToLogin = "Failed to Login"
 }
 
-    
-
-extension ContentView{
-    
-    // Async/Await method
-    
-    func fetchData(email: String, password: String)async{
-        do{
-            // Auth...
-            let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
-            let userID = authResult.user.uid
-            // Getting User Data
-            let document = try await Firestore.firestore().collection("Users").document(userID).getDocument().data(as: User.self)
-            guard let userData = try? document else {
-                throw DatabaseError.failed
-            }
-            
-            // Добавляем Data
-            self.users = [userData]
-        }
-        catch{
-            errorMessage = error.localizedDescription
-            showError.toggle()
-        }
-    }
-
-    //Fetching Data Using Completion Handler
-    
-// sign in and return UID
-func authUserWithCH(email: String, password: String, completion: @escaping (Result<String, AuthError>) -> ()) {
-    
-    Auth.auth().signIn(withEmail: email, password: password) { result, error in
-        if let _ = error{
-            completion(.failure(.failedToLogin))
-            return
-        }
-        
-        guard let user = result else{
-            completion(.failure(.failedToLogin))
-            return
-        }
-        
-        completion(.success(user.user.uid))
-        print("auth success")
-    }
-}
-
-// This will return User data from UID
-
-func fetchUserDataWithCH(userId: String, completion: @escaping (Result<[User], DatabaseError>) -> ()){
-    Firestore.firestore().collection("Users").document(userId).getDocument { snapshot, error in
-        if let _ = error {
-            completion(.failure(.failed))
-            return
-        }
-        guard let userData = try? snapshot?.data(as: User.self) else {
-            completion(.failure(.failed))
-            print("Model incorrect")
-            return
-        }
-        
-        completion(.success([userData]))
-       
-    }
-}
-
-// This will use those to get and set data
-
-func fetchDataWithCH() {
-    authUserWithCH(email: "ars@mail.ru", password: "qwertyu") { result in
-        switch result{
-            
-        case .success(let userId):
-            fetchUserDataWithCH(userId: userId){ result in
-                switch result{
-                    
-                case .success(let users):
-                    self.users = users
-                case .failure(let error):
-                    errorMessage = error.rawValue
-                    showError.toggle()
-                }
-            }
-        case .failure(let error):
-            errorMessage = error.rawValue
-            showError.toggle()
-            }
-        }
-    }
-}

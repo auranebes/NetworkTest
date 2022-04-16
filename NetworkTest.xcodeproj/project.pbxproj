@@ -27,6 +27,12 @@
 		9836AC752804D98200F7F767 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836AC742804D98200F7F767 /* Home.swift */; };
 		9899306C280B565A00BD2C74 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899306B280B565A00BD2C74 /* DataManager.swift */; };
 		9899306F280B577600BD2C74 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899306E280B577600BD2C74 /* UserManager.swift */; };
+		98993077280B5C2E00BD2C74 /* SupportMailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98993076280B5C2E00BD2C74 /* SupportMailData.swift */; };
+		98993079280B60E100BD2C74 /* DeviceModels.json in Resources */ = {isa = PBXBuildFile; fileRef = 98993078280B60DF00BD2C74 /* DeviceModels.json */; };
+		9899307C280B611D00BD2C74 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899307B280B611D00BD2C74 /* UIDevice+Extension.swift */; };
+		9899307E280B612800BD2C74 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9899307D280B612700BD2C74 /* Bundle+Extension.swift */; };
+		98993086280B649700BD2C74 /* SupportMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98993085280B649600BD2C74 /* SupportMailView.swift */; };
+		98993088280B6A4D00BD2C74 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98993087280B6A4B00BD2C74 /* MailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,12 @@
 		9836AC742804D98200F7F767 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		9899306B280B565A00BD2C74 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9899306E280B577600BD2C74 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		98993076280B5C2E00BD2C74 /* SupportMailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportMailData.swift; sourceTree = "<group>"; };
+		98993078280B60DF00BD2C74 /* DeviceModels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeviceModels.json; sourceTree = "<group>"; };
+		9899307B280B611D00BD2C74 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		9899307D280B612700BD2C74 /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		98993085280B649600BD2C74 /* SupportMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportMailView.swift; sourceTree = "<group>"; };
+		98993087280B6A4B00BD2C74 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +99,14 @@
 			children = (
 				9836AC602800B86100F7F767 /* Info.plist */,
 				9836AC452800B4F400F7F767 /* NetworkTestApp.swift */,
+				98993078280B60DF00BD2C74 /* DeviceModels.json */,
 				9836AC742804D98200F7F767 /* Home.swift */,
 				98993072280B584E00BD2C74 /* Views */,
 				98993071280B584000BD2C74 /* Items */,
 				98993070280B583700BD2C74 /* Model */,
 				9899306D280B575A00BD2C74 /* Services */,
 				98993073280B585D00BD2C74 /* ViewModel */,
+				9899307A280B610700BD2C74 /* Extensions */,
 				9836AC532800B54200F7F767 /* GoogleService-Info.plist */,
 				9836AC492800B4F600F7F767 /* Assets.xcassets */,
 				9836AC4B2800B4F600F7F767 /* Preview Content */,
@@ -121,6 +135,7 @@
 				9836AC682804730300F7F767 /* NetworkManager.swift */,
 				9899306B280B565A00BD2C74 /* DataManager.swift */,
 				9899306E280B577600BD2C74 /* UserManager.swift */,
+				98993076280B5C2E00BD2C74 /* SupportMailData.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -137,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				9836AC702804D21400F7F767 /* TextFieldView.swift */,
+				98993087280B6A4B00BD2C74 /* MailView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -147,6 +163,7 @@
 				9836AC472800B4F400F7F767 /* ContentView.swift */,
 				9836AC722804D3E800F7F767 /* WelcomeView.swift */,
 				9836AC6E2804D1E000F7F767 /* AuthView.swift */,
+				98993085280B649600BD2C74 /* SupportMailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +174,15 @@
 				9836AC6A2804735B00F7F767 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9899307A280B610700BD2C74 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9899307B280B611D00BD2C74 /* UIDevice+Extension.swift */,
+				9899307D280B612700BD2C74 /* Bundle+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9836AC4D2800B4F600F7F767 /* Preview Assets.xcassets in Resources */,
+				98993079280B60E100BD2C74 /* DeviceModels.json in Resources */,
 				9836AC4A2800B4F600F7F767 /* Assets.xcassets in Resources */,
 				9836AC542800B54200F7F767 /* GoogleService-Info.plist in Resources */,
 			);
@@ -241,9 +268,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98993086280B649700BD2C74 /* SupportMailView.swift in Sources */,
+				98993077280B5C2E00BD2C74 /* SupportMailData.swift in Sources */,
+				9899307E280B612800BD2C74 /* Bundle+Extension.swift in Sources */,
+				9899307C280B611D00BD2C74 /* UIDevice+Extension.swift in Sources */,
 				9836AC6B2804735B00F7F767 /* AuthViewModel.swift in Sources */,
 				9899306C280B565A00BD2C74 /* DataManager.swift in Sources */,
 				9836AC712804D21400F7F767 /* TextFieldView.swift in Sources */,
+				98993088280B6A4D00BD2C74 /* MailView.swift in Sources */,
 				9836AC692804730300F7F767 /* NetworkManager.swift in Sources */,
 				9836AC732804D3E800F7F767 /* WelcomeView.swift in Sources */,
 				9836AC752804D98200F7F767 /* Home.swift in Sources */,

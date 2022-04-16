@@ -11,6 +11,7 @@ class DataManager {
     
     static let shared = DataManager()
     
+    
     @AppStorage("User") private var userData: Data?
     
     private init() {}
