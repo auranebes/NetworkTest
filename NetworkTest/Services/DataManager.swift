@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseStorage
 
 class DataManager {
     
     static let shared = DataManager()
-    
+    let urlStringPDF = "gs://networktest-56543.appspot.com/sample.pdf"
     
     @AppStorage("User") private var userData: Data?
     
@@ -28,5 +30,28 @@ class DataManager {
     func clear(userManager: UserManager) {
         userManager.user.user_name = ""
         userData = nil
+    }
+    
+    func getURLFromFirestore(path: String, success:@escaping (_ docURL:URL)->(),failure:@escaping (_ error:Error)->()){
+        
+        let storage = Storage.storage().reference(forURL: path)
+         storage.downloadURL { (url, error) in
+             if let _error = error{
+                 print(_error.localizedDescription)
+                 failure(_error)
+             } else {
+                 if let docURL = url {
+                     success(docURL)
+                 }
+             }
+         }
+    }
+
+    func urlForDocPath(path: String, success: @escaping (_ docURL:URL?)->(), failure: @escaping (_ error:Error)->()) {
+        getURLFromFirestore(path: path,  success: { (docURL) in
+            success(docURL)
+        }) { (error) in
+            failure(error)
+        }
     }
 }

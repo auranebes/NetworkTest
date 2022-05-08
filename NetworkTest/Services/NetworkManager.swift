@@ -11,7 +11,6 @@ import Firebase
 class NetworkManager {
     static let shared = NetworkManager()
     
-    
     private init() {}
     
     func fetchUserDataWithCH(user_name: String, completion: @escaping (Result<User, DatabaseError>) -> Void){
@@ -39,4 +38,6 @@ class NetworkManager {
             }
         }
     }
+    
+    
 }

@@ -78,19 +78,25 @@ struct ContentView: View {
                     } label: {
                         Text("Exit")
                     }
+                    
+                    NavigationLink {
+                        PDFKitView()
+                    } label: {
+                        Text("agreem.")
+                    }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack{
                         NavigationLink {
                             AuthView()
                         } label: {
-                            Text("Register User")
+                            Text("Register")
                         }
                         
                         NavigationLink {
                             SupportMailView()
                         } label: {
-                            Text("Написать в поддержку")
+                            Text("Letter")
                         }
                     }
 

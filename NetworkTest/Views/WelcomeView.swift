@@ -34,6 +34,8 @@ struct WelcomeView: View {
                         Text("Log In")
                     }
                 }
+                
+                
             .navigationTitle("Welcome")
             }
         }
